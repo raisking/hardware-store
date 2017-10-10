@@ -28,20 +28,40 @@ class AdminForm extends Component {
     this.setState({newForm: newForm})
   }
 
+  handleSubmit = (event) => {
+    event.preventDefault()
+    this.props.addProductToProductList(this.state.newForm)
+
+    const emptyForm = {
+      productName: '',
+      price: '',
+      description: ''
+    }
+    this.setState({newForm: emptyForm})
+  }
+
   render () {
     return (
-      <form >
+  
+      <form onSubmit={this.handleSubmit}>
         <div>
+        <h2><u>This is AdminForm.js page</u></h2>
           {/* value is equal to what we want to change in state */}
           {/* name is equal to the key we want to edit in the object  */}
           {/* onChange is the event listener that updates state with a users input */}
-          <input onChange={this.handleChange} name="productName" type="text" placeholder="Name" value={this.state.newForm.productName}/>
+          <input onChange={this.handleChange} 
+          name="productName" type="text" placeholder="Name"
+           value={this.state.newForm.productName}/>
         </div>
         <div>
-          <input onChange={this.handleChange} name="price" type="text" placeholder="Price" value={this.state.newForm.price}/>
+          <input onChange={this.handleChange} 
+          name="price" type="text" placeholder="Price" 
+          value={this.state.newForm.price}/>
         </div>
         <div>
-          <input onChange={this.handleChange} name="description" type="text" placeholder="Description" value={this.state.newForm.description}/>
+          <input onChange={this.handleChange} 
+          name="description" type="text" placeholder="Description" 
+          value={this.state.newForm.description}/>
         </div>
         <div>
           <button>Create A Product</button>
